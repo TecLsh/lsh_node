@@ -11,3 +11,10 @@ import UserModel from '../src/models/user';
 /*
 * 页面操作
 * */
+
+/*测试页面*/
+module.exports = {
+    'GET /index': async(ctx,next) => {
+        ctx.render( '../dist/index.html' );
+    }
+}

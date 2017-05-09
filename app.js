@@ -4,6 +4,8 @@ const bodyParser = require('koa-bodyparser');
 
 const controller = require('./controller');
 
+const templating = require( './public/templating' );
+
 const rest = require('./rest');
 
 const app = new Koa();
@@ -30,6 +32,12 @@ app.use(bodyParser());
 
 // bind .rest() for ctx:
 app.use(rest.restify());
+
+// add nunjucks as view:
+app.use(templating('views', {
+    noCache: !isProduction,
+    watch: !isProduction
+}));
 
 // add controllers:
 app.use(controller());
